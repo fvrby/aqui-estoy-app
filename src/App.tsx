@@ -119,7 +119,7 @@ function App() {
     e.preventDefault();
     
     if (!developerLinkClicked) {
-      // Primer clic: mostrar mensaje
+      // Primer clic: mostrar mensaje sobre Nadia Montecinos
       setDeveloperLinkClicked(true);
       setShowExitMessage(true);
       
@@ -128,11 +128,17 @@ function App() {
         setShowExitMessage(false);
       }, 3000);
     } else {
-      // Segundo clic: redirigir a la web
-      window.open('https://sushimin.neocities.org/', '_blank');
-      // Resetear estado para futuras interacciones
-      setDeveloperLinkClicked(false);
-      setShowExitMessage(false);
+      // Segundo clic: mostrar mensaje de salida y luego abrir el sitio
+      setShowExitMessage(true);
+      
+      // Cambiar el mensaje a "Saliendo a la web del desarrollador..."
+      setTimeout(() => {
+        // Abrir el enlace después de mostrar el mensaje
+        window.open('https://sushimin.neocities.org/', '_blank');
+        // Resetear estado para futuras interacciones
+        setDeveloperLinkClicked(false);
+        setShowExitMessage(false);
+      }, 2000);
     }
   };
 
@@ -156,7 +162,9 @@ function App() {
       {/* Mensaje de salida */}
       {showExitMessage && (
         <div className="exit-message">
-          Saliendo de la aplicación...
+          {!developerLinkClicked ? 
+            "Proyecto desarrollado para Nadia Montecinos" : 
+            "Saliendo a la web del desarrollador..."}
         </div>
       )}
 
