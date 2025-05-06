@@ -129,14 +129,13 @@ function App() {
       }, 3000);
     } else {
       // Segundo clic: mostrar mensaje de salida y luego abrir el sitio
+      setDeveloperLinkClicked(false); // Resetear el estado inmediatamente
       setShowExitMessage(true);
       
-      // Cambiar el mensaje a "Saliendo a la web del desarrollador..."
+      // Mostrar mensaje de salida y luego abrir el sitio
       setTimeout(() => {
         // Abrir el enlace después de mostrar el mensaje
         window.open('https://sushimin.neocities.org/', '_blank');
-        // Resetear estado para futuras interacciones
-        setDeveloperLinkClicked(false);
         setShowExitMessage(false);
       }, 2000);
     }
@@ -162,7 +161,7 @@ function App() {
       {/* Mensaje de salida */}
       {showExitMessage && (
         <div className="exit-message">
-          {!developerLinkClicked ? 
+          {developerLinkClicked ? 
             "Proyecto desarrollado para Nadia Montecinos" : 
             "Saliendo a la web del desarrollador..."}
         </div>
